@@ -3,6 +3,7 @@ import { Home } from './core/components/home/home';
 import { CountryDetail } from './features/countries/pages/country-detail/country-detail';
 import { CountryList } from './features/countries/pages/country-list/country-list';
 import { FavoriteList } from './features/favorites/pages/favorite-list/favorite-list';
+import { CapitalPage } from './features/capitals/pages/capital-page/capital-page/capital-page';
 
 export const routes: Routes = [
     {
@@ -19,5 +20,8 @@ export const routes: Routes = [
     }, {
         path: 'favorites',
         component: FavoriteList
-    }, 
+    }, {
+        path: 'capitals',
+        component: CapitalPage
+    },
 ];

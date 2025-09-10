@@ -3,23 +3,26 @@ import { computed } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { Country } from '@yusifaliyevpro/countries/types';
 
-export interface CountriesState { 
-  data: Country[];
+export interface WeatherState { 
+  data: any;
+  cityData: any;
 };
 
-export const CountriesStore = signalStore(
+export const WeatherStore = signalStore(
   { providedIn: 'root' },
   withDevtools('countries'),
-  withState<CountriesState>({ data: [] }),
+  withState<WeatherState>({ data: null, cityData: null }),
   withComputed(({ data }) => ({
-    list:  computed(() => [...data()]),
-    capitals: computed(() => data().map(c => {
-      return {name: c.capital, lat: c.latlng[0], lng: c.latlng[1]}
-    }))
+    weather: computed(() => {
+      return data();
+    }),
   })),
   withMethods((store) => ({
-    set(data: Country[]) {
+    set(data: any) {
       patchState(store, { data });
+    },
+    setCityData(cityData: any) {
+      patchState(store, { cityData });
     }
   })),
 );
